@@ -117,6 +117,7 @@ void loop() {
 void setLED(uint8_t LEDNum, uint8_t Red, uint8_t Green, uint8_t Blue) {
   strip.setPixelColor(LEDMap[LEDNum], Red, Green, Blue);
   strip.show();
+  Serial.println('L');
 }
 
 void sendSwitchState() {
@@ -128,18 +129,19 @@ void sendSwitchState() {
       Serial.write(IOOffStates[i]);
     }
   }
+  Serial.print("\n");
 }
 
 void sendPushbuttonState() {
   if(digitalRead(12)) {
-    Serial.print('P');
+    Serial.println('P');
   } else {
-    Serial.print('p');
+    Serial.println('p');
   }
 }
 
 void sendVersionInfo() {
-  Serial.print(F("VendingPanelV1.0"));
+  Serial.println(F("VendingPanelV1.0"));
 }
 
 uint8_t ConvertCharToHex(char c) {
